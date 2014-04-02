@@ -1,13 +1,32 @@
-﻿using System.Web;
-using System.Web.Optimization;
-
-namespace Ui.Front
+﻿namespace Ui.Front.App_Start
 {
-    public class BundleConfig
+    using Bootstrap.Extensions.StartupTasks;
+    using System;
+    using System.Web.Optimization;
+
+    public class BundleConfig : IStartupTask
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
-        public static void RegisterBundles(BundleCollection bundles)
+        private BundleCollection bundles;
+
+        private BundleConfig(BundleCollection bundles)
         {
+            this.bundles = bundles;
+        }
+
+        public BundleConfig()
+            : this(BundleTable.Bundles)
+        {
+
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Run()
+        {
+            // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

@@ -1,11 +1,30 @@
-﻿using System.Web;
-using System.Web.Mvc;
-
-namespace Ui.Front
+﻿namespace Ui.Front.App_Start
 {
-    public class FilterConfig
+    using Bootstrap.Extensions.StartupTasks;
+    using System;
+    using System.Web.Mvc;
+
+    public class FilterConfig : IStartupTask
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        private GlobalFilterCollection filters;
+
+        private FilterConfig(GlobalFilterCollection filters)
+        {
+            this.filters = filters;
+        }
+
+        public FilterConfig()
+            : this(GlobalFilters.Filters)
+        {
+
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Run()
         {
             filters.Add(new HandleErrorAttribute());
         }
